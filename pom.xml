@@ -16,6 +16,7 @@
         <spring.cloud.version>Hoxton.RELEASE</spring.cloud.version>
         <jib.version>2.6.0</jib.version>
         <lombok.version>1.18.16</lombok.version>
+        <appengine-maven-plugin.version>2.4.0</appengine-maven-plugin.version>
     </properties>
     <dependencies>
         <dependency>
@@ -66,7 +67,11 @@
             <plugin>
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>appengine-maven-plugin</artifactId>
-                <version>2.4.0</version>
+                <version>${appengine-maven-plugin.version}</version>
+                <configuration>
+                    <version>2</version>
+                    <projectId>steady-grid-281506</projectId>
+                </configuration>
             </plugin>
         </plugins>
     </build>
