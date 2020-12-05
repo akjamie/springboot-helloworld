@@ -23,23 +23,22 @@ spec:
     spec:
       containers:
         - name: hello-world
-          image: <YOUR IMAGE PATH HERE>
+          image: gcr.io/steady-grid-281506/helloworld:1.0.0
           ports:
-            - containerPort: 80
+            - containerPort: 8080
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: devops-deployment-lb
+  name: hello-world-lb
+  namespace: k8s-test
   labels:
-    app: devops
-    tier: frontend-lb
+    app: hello-world
 spec:
   type: LoadBalancer
   ports:
-    - port: 80
-      targetPort: 80
+    - port: 10000
+      targetPort: 8080
   selector:
-    app: devops
-    tier: frontend
+    app: hello-world
