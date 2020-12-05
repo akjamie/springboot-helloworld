@@ -25,7 +25,8 @@ service: hello-world
  in pom.xml  
  - gcloud app services list  
  list all the service you've deployed
- - gcloud app services [SERVICES...] [--version=VERSION]
+ - gcloud app services delete [SERVICES...] [--version=VERSION]
+ delete service, also support delete against concrete version of given service.
 
 **Others**  
 1.AppEngine support traffic splitting across multiple version for the service you deployed, for instance,
