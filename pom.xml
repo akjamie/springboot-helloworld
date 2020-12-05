@@ -52,9 +52,10 @@
                         <image>openjdk:alpine</image>
                     </from>
                     <to>
-                        <image>docker.io/akjamie/${artifactId}:${project.version}</image>
+<!--                        <image>docker.io/akjamie/${artifactId}:${project.version}</image>-->
                         <!-- <credHelper>wincred</credHelper> -->
-                        <credHelper>desktop</credHelper>
+<!--                        <credHelper>desktop</credHelper>-->
+                        <image>gcr.io/steady-grid-281506/${artifactId}:${project.version}</image>
                     </to>
                     <container>
                         <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
