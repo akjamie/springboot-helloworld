@@ -20,6 +20,53 @@ Sample project - hello world, which used for test GCP k8s deployment
     </configuration>
 </plugin>
 ```
+- k8s deployment config
+```
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: k8s-test
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld-deployment
+  namespace: k8s-test
+  labels:
+    app: hello-world
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello-world
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+        - name: hello-world
+          image: gcr.io/steady-grid-281506/helloworld:1.0.0
+          ports:
+            - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world-lb
+  namespace: k8s-test
+  labels:
+    app: hello-world
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 10000
+      targetPort: 8080
+  selector:
+    app: hello-world
+```
 
 ## Useful Commands 
 - gcloud container clusters get-credentials cluster-1 --zone asia-northeast2-a --project steady-grid-281506  
@@ -38,5 +85,4 @@ show the node pool of given cluster, in K8S, the nodes in cluster are managed un
 command in Google Cloud Shell.
 
 **Referred articles/blogs**  
-1.https://stackoverflow.com/questions/58493850/cannot-process-application-with-runtime-java8-google-appengine-deployment-err  
-2.https://cloud.google.com/appengine/docs/standard/java/tools/uploadinganapp#deploying_an_app  
+1.https://estl.tech/configuring-https-to-a-web-service-on-google-kubernetes-engine-2d71849520d 
