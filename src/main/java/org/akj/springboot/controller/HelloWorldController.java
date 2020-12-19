@@ -37,7 +37,7 @@ public class HelloWorldController {
         HashMap<String, Object> map = new HashMap<>();
         map.put("sourceIp",sourceIp);
         map.put("targetIp",localIp);
-        map.put("application", Map.of("name", appName, "version", "2", "server","GCP appEngine standard"));
+        map.put("application", appName);
 
         return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(map);
     }
