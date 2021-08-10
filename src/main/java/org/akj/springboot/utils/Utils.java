@@ -13,7 +13,7 @@ import java.net.UnknownHostException;
  * @Point: Keep a good mood
  **/
 @Slf4j
-public class IpUtil {
+public class Utils {
     public static String getIpAddr(HttpServletRequest request) {
         String ipAddress = null;
         try {
@@ -56,5 +56,16 @@ public class IpUtil {
         }
         ipAddress = inet.getHostAddress();
         return ipAddress;
+    }
+
+    public static String getHostName(){
+        InetAddress inet = null;
+        try {
+            inet = InetAddress.getLocalHost();
+        } catch (UnknownHostException e) {
+            log.error("cannot get local hostname", e);
+        }
+
+        return inet.getHostName();
     }
 }

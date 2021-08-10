@@ -1,6 +1,6 @@
 package org.akj.springboot.controller;
 
-import org.akj.springboot.utils.IpUtil;
+import org.akj.springboot.utils.Utils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,16 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 
 @RestController
-public class HelloWorldController {
+public class HealthCheckController {
 
-    @GetMapping("/hello-world")
+    @GetMapping("/health")
     public ResponseEntity hello(HttpServletRequest request) {
-        String sourceIp = IpUtil.getIpAddr(request);
-        String localIp = IpUtil.getLocalIpAddress();
+        final String sourceIp = Utils.getIpAddr(request);
+        final String localIp = Utils.getLocalIpAddress();
+        final String hostName = Utils.getHostName();
+
         HashMap<String, Object> map = new HashMap<>();
-        map.put("sourceIp",sourceIp);
-        map.put("targetIp",localIp);
-        map.put("message", "hello,world!");
+        map.put("sourceIp", sourceIp);
+        map.put("targetIp", localIp);
+        map.put("hostName", hostName);
+        map.put("status", "UP");
 
         return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(map);
     }
