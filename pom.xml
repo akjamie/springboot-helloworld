@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.akj.springboot</groupId>
     <artifactId>utilities-healthcheck</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -12,9 +12,9 @@
     </parent>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jib.version>3.1.2</jib.version>
+        <jib.version>3.1.4</jib.version>
         <lombok.version>1.18.20</lombok.version>
     </properties>
     <dependencies>
@@ -48,11 +48,15 @@
                 <version>${jib.version}</version>
                 <configuration>
                     <from>
-                        <image>openjdk:alpine</image>
+                        <image>adoptopenjdk:11.0.11_9-jdk-openj9-0.26.0</image>
                     </from>
                     <to>
                         <image>public.ecr.aws/a0i4s5a9/${project.artifactId}:${project.version}</image>
                         <credHelper>ecr-login</credHelper>
+                        <tags>
+                            <tag>${project.version}</tag>
+                            <tag>latest</tag>
+                        </tags>
                     </to>
                     <container>
                         <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
